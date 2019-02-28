@@ -1,0 +1,56 @@
+package weather;
+import java.util.ArrayList;
+
+/**
+ * Sky2 class aggregates ArrayList of clouds
+ * @author Caitlyn Chau
+ * CS 46B HW2
+ */
+public class Sky2 extends ArrayList<Cloud>{
+	
+	/**
+	 * Sky2 constructor calls ArrayList superclass to initialize ArrayList with 100 
+	 */
+	public Sky2(){
+		super(100);
+	}
+	
+	/**
+	 * getMeanHeight traverses through this ArrayList and calculates the average
+	 * @return
+	 */
+	public float getMeanHeight() {
+		float sum = 0;
+		int i = 0;
+		for (Cloud c : this) {
+			sum += c.getHeight();
+			i++;
+		}
+		return sum / i;
+	}
+	
+	/**
+	 * Main method
+	 * @param args - argument
+	 */
+	public static void main(String[] args) {
+		StratusCloud strat = new StratusCloud(100, 1000);
+		if (!strat.rain().startsWith("It is raining"))
+			System.out.println("Bad StratusCloud::rain");
+		CumulusCloud cumu = new CumulusCloud(200, 2000);
+		if (!cumu.rain().startsWith("It is raining"))
+			System.out.println("Bad CumulusCloud::rain");
+		CirrusCloud cirr = new CirrusCloud(300,3000);
+		if (!cirr.rain().startsWith("I cannot make"))
+			System.out.println("Bad CirrusCloud::rain");
+		Sky2 sky = new Sky2();
+		sky.add(strat);
+		sky.add(cumu);
+		sky.add(cirr);
+		float mean = sky.getMeanHeight();
+		if (mean < 1799 || mean > 1801)
+			System.out.println("Bad mean height: expected 1800, saw " + mean);
+		System.out.println("Everything (else) is ok");
+	}
+
+}
