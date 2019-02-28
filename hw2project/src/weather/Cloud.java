@@ -3,7 +3,7 @@ package weather;
 /**
  * Cloud class represents a cloud
  * @author Caitlyn Chau
- * CS 46B HW2
+ * CS 46 B HW2
  */
 public class Cloud {
 	private float top, bottom;
